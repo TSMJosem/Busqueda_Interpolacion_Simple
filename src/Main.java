@@ -1,27 +1,25 @@
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {10, 20, 30, 40, 50};
-        int lim_inferior, lim_superior, pos;
-        double valor_buscado;
+        int low, high, pos, datos_repetidos;
+        double key;
+        int[] arr = {10, 20, 30, 35, 40, 50};
 
-        valor_buscado = 10;
-        lim_inferior = 0;
-        lim_superior = arr.length - 1;
+        low = 0;
+        high = arr.length-1;
+        pos = 0;
+        key = 30;
 
-        pos = (int) (lim_inferior + ((valor_buscado - arr[lim_inferior])/(arr[lim_superior] - arr[lim_inferior]))
-                * (lim_superior - lim_inferior));
+        while (pos>=low && pos<=high) {
+            pos = (int) (low + ((key - arr[low])/(arr[high] - arr[low])) * (high - low));
 
-        while (pos <= lim_superior && pos >= lim_inferior) {
-
-            if (arr[pos] == valor_buscado) {
-                System.out.println("El dato está en la posición: " + pos + " del arreglo");
+            if (arr[pos] == key) {
+                System.out.println("Se ha encontrado un valor a esta posición");
                 break;
+            } else if (arr[pos] < key) {
+                low = pos + 1;
             }
-            else if (arr[pos] < valor_buscado) {
-                lim_inferior = pos + 1;
-            }
-            else if (arr[pos] > valor_buscado) {
-                lim_superior = pos - 1;
+            else if (arr[pos] > key) {
+                high = pos - 1;
             }
         }
     }
